@@ -1,0 +1,26 @@
+---
+openapi: 3.0.3
+info:
+  title: API V1
+  version: v1
+components:
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+paths:
+  # TODO: Write swagger
+
+  # Authentication
+  /api/v1/login:
+    $ref: paths/sessions.yaml#login
+
+  # HealthChecks
+  /api/v1/ping:
+    $ref: paths/health_checks.yaml#ping
+servers:
+  - url: http://{defaultHost}
+    variables:
+      defaultHost:
+        default: localhost:3000

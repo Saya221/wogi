@@ -1,0 +1,11 @@
+/log/*
+!/log/.keep
+
+/storage/*
+!/storage/.keep
+
+keys
+tmp
+coverage
+
+config/application.yml

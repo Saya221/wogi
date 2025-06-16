@@ -1,0 +1,28 @@
+# Ignored files or directories
+AllCops:
+  Exclude:
+    - "bin/*"
+    - "config/**/*"
+    - "db/**/*"
+
+# Changed default format
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+Layout/LineLength:
+  Max: 110
+
+# Disabled
+Style/Documentation:
+  Enabled: false
+Naming/AccessorMethodName:
+  Enabled: false
+Lint/MissingSuper:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Disabled for RSpec
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+    - "app/controllers/concerns/api/v1/rescue_exceptions.rb"
