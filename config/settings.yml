@@ -4,7 +4,7 @@ pagy:
   items_default: 30
   page_default: 1
 jwt:
-  expiration_time: 18000
+  expiration_time: 1800000
   algorithm: HS256
   token_type: Bearer
 epoch_time:
@@ -13,3 +13,12 @@ user:
   password:
     regexp: !ruby/regexp /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[a-zA-Z\d@$!%*#?&]{8,}\z/
     at_least: 8
+payout_rate:
+  min: 0.1
+  max: 100.0
+product:
+  price:
+    min: 0.1
+currency_precision: 2
+limit:
+  activation_code: 6

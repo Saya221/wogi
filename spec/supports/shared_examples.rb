@@ -9,7 +9,7 @@ shared_examples :filter_and_sort do
   let(:subject1) { send("#{underscore_class_name}1") }
   let(:subject2) { send("#{underscore_class_name}2") }
 
-  describe "#filter_by" do
+  describe ".filter_by" do
     context "id" do
       let(:conditions) { { id: MethodsHelper::UUID11 } }
 
@@ -23,24 +23,24 @@ shared_examples :filter_and_sort do
     end
   end
 
-  describe "#sort_by" do
+  describe ".conditions_sort" do
     context "id" do
       let(:conditions) { { id: :asc } }
 
-      it { expect(described_class.sort_by(conditions)).to eq [subject1, subject2] }
+      it { expect(described_class.conditions_sort(conditions)).to eq [subject1, subject2] }
     end
 
     context "default" do
       context "conditions is Hash" do
         let(:conditions) { {} }
 
-        it { expect(described_class.sort_by(conditions)).to eq [subject2, subject1] }
+        it { expect(described_class.conditions_sort(conditions)).to eq [subject2, subject1] }
       end
 
       context "conditions is nil" do
         let(:conditions) {}
 
-        it { expect(described_class.sort_by(conditions)).to eq [subject2, subject1] }
+        it { expect(described_class.conditions_sort(conditions)).to eq [subject2, subject1] }
       end
     end
   end

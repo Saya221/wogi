@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_paper_trail
   acts_as_paranoid
 
   has_many :user_sessions, dependent: :destroy
+  has_many :accessible_products, dependent: :destroy
+  has_many :products, through: :accessible_products
+  has_many :brands, through: :products
 
-  enum role: %i[admin staff]
-  enum status: %i[inactive active]
+  enum :state, %i[inactive active]
 
   validates :email, uniqueness: { case_sensitive: false }, format: { with: URI::MailTo::EMAIL_REGEXP }
 

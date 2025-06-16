@@ -7,7 +7,7 @@ RSpec.describe Api::V1::HealthChecksController do
     before { get :ping }
 
     it "when get server status successfully" do
-      expect(response.body).to eq "pong"
+      expect(response.body).to eq({ ping: "pong" }.to_json)
     end
   end
 end

@@ -3,7 +3,7 @@
 - Description
 
   - An example API app
-  - Ruby version 3.2.2
+  - Ruby version 3.1.7
   - Rails 7
 
 - Starting rails app

@@ -12,11 +12,12 @@ gem "config"
 gem "figaro"
 gem "jwt"
 gem "pagy"
+gem "paper_trail", "~> 16.0"
 gem "paranoia"
 gem "pg", "~> 1.5", ">= 1.5.2"
 gem "puma"
 gem "rack-cors"
-gem "rails", "~> 7.0.4"
+gem "rails", "~> 7.2", ">= 7.2.2.1"
 
 group :development, :test do
   gem "factory_bot_rails"

@@ -4,8 +4,9 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :email, null: false, index: {unique: true}
       t.string :password_encrypted, null: false
-      t.integer :role, default: User.roles[:staff]
-      t.integer :status, default: User.statuses[:inactive]
+      t.string :type, index: true
+      t.integer :state, default: User.states[:active], null: false, index: true
+      t.decimal :payout_rate, precision: 10, scale: 2
       t.datetime :confirmed_at
 
       t.datetime :deleted_at

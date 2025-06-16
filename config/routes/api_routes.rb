@@ -9,6 +9,33 @@ module ApiRoutes
 
           # HealthChecks
           get :ping, to: "health_checks#ping"
+
+          # Admin
+          namespace :admin do
+            resources :users, only: %i[index show create]
+            resources :brands, only: %i[index show create update destroy] do
+              resources :products, only: %i[index show create update destroy]
+            end
+            resources :cards, only: %i[index] do
+              member do
+                patch :approved
+                patch :cancelled
+              end
+            end
+            resources :reports, only: %i[index]
+          end
+
+          # Client
+          namespace :client do
+            resources :cards, only: %i[index show create update destroy] do
+              member do
+                patch :cancelled
+              end
+            end
+            resources :products, only: %i[index]
+            resources :reports, only: %i[index]
+          end
+
         end
       end
 

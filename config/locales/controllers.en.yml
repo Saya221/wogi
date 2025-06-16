@@ -1,3 +1,13 @@
 en:
   api:
     v1:
+      client:
+        cards:
+          invalid_card_state:
+            code: 1900
+            message: Card already completed or cancelled
+      admin:
+        cards:
+          invalid_card_state:
+            code: 1900
+            message: Card already completed or cancelled

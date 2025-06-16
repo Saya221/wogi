@@ -5,7 +5,6 @@ FactoryBot.define do
     name { Faker::Name.name }
     email { "user#{Time.current.to_i}#{Faker::Number.hexadecimal}@gmail.com" }
     password { "Aa@123456" }
-    role { User.roles.keys.sample }
-    status { User.statuses[:active] }
+    state { User.states[:active] }
   end
 end

@@ -4,16 +4,18 @@ class Api::V1::BaseController < ApplicationController
   include Api::V1::BaseConcern
 
   before_action :authenticate_request
+  before_action :set_paper_trail_whodunnit
 
   private
 
-  attr_reader :current_session, :current_user
+  attr_reader :current_session, :current_user, :current_role
 
   def authenticate_request
     request_info = Api::V1::JwtProcessingService.new(access_token: load_jwt_token).decode
 
     @current_user = request_info[:current_user]
     @current_session = request_info[:current_session]
+    @current_role = current_user.type
   end
 
   def load_jwt_token
