@@ -17,11 +17,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_18_071958) do
   create_table "accessible_products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "product_id"
     t.uuid "user_id"
+    t.integer "state", default: 0, null: false
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id", "user_id"], name: "index_accessible_products_on_product_id_and_user_id", unique: true
     t.index ["product_id"], name: "index_accessible_products_on_product_id"
+    t.index ["state"], name: "index_accessible_products_on_state"
     t.index ["user_id"], name: "index_accessible_products_on_user_id"
   end
 

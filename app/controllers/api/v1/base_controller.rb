@@ -5,6 +5,7 @@ class Api::V1::BaseController < ApplicationController
 
   before_action :authenticate_request
   before_action :set_paper_trail_whodunnit
+  before_action :permit_params, only: %i[index]
 
   private
 

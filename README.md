@@ -2,17 +2,25 @@
 
 - Description
 
-  - An example API app
-  - Ruby version 3.1.7
-  - Rails 7
+  - Example API app
+  - Ruby version: 3.1.7
+  - Rails version: 7
 
-- Starting rails app
+- Starting the Rails app
 
-  - bundle install
-  - rails s
+  - Run `bundle install`
+  - Run `rails s`
 
-- Code rules
-  Running before push:
-  - brakeman (for normal injections)
-  - rubocop -A (for coding style)
-  - rspec (check file coverage at least > 80%)
+- Code rules  
+  Run before pushing:
+
+  - `brakeman` (for security checks)
+  - `rubocop -A` (for coding style)
+  - `rspec` (ensure file coverage is at least 80%)
+
+- Real-time coding & estimates
+  - Database design: 0.5 MD
+  - Codebase: 1.5 MD
+  - API: 1 MD
+  - RSpec: 1 MD
+  - Documentation: In progress (1 MD)

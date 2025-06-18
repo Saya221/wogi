@@ -8,11 +8,7 @@ class Api::V1::ProductSerializer < Api::V1::BaseSerializer
   end
 
   def brand
-    Api::V1::BrandSerializer.new(object.brand, type: :brand_index_info)
-  end
-
-  def price
-    object.price.to_f(Settings.currency_precision)
+    Api::V1::BrandSerializer.new(object.brand, type: :brand_index_info).to_hash
   end
 
   def created_at

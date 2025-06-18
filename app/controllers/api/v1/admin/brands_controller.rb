@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Admin::BrandsController < Api::V1::Admin::BaseController
+  include Api::V1::PermitParams
+
   def index
     pagy_info, records = paginate brands
 
@@ -8,8 +10,6 @@ class Api::V1::Admin::BrandsController < Api::V1::Admin::BaseController
   end
 
   def show
-    brand = brands.find(params[:id])
-
     render_json brand
   end
 
@@ -28,14 +28,13 @@ class Api::V1::Admin::BrandsController < Api::V1::Admin::BaseController
   def destroy
     brand.destroy!
 
-    render_json data: {}, meta: {}
+    render_json({}, meta: {})
   end
 
   private
 
   def brands
-    @brands ||= Brand.filter_by(params.dig(:filter, :field) => params.dig(:filter, :value))
-                     .conditions_sort(params.dig(:sort, :field) => params.dig(:sort, :value))
+    @brands ||= Brand.filter_by(params[:filter].to_h).conditions_sort(params[:sort].to_h)
   end
 
   def brand
@@ -44,6 +43,5 @@ class Api::V1::Admin::BrandsController < Api::V1::Admin::BaseController
 
   def brand_params
     params.require(:brand).permit(:name, :description, :country, :state, :website_url)
-          .merge(filter: {}, sort: {})
   end
 end

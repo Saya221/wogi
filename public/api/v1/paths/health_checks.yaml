@@ -10,5 +10,8 @@ ping:
         content:
           application/json:
             schema:
-              type: string
-              example: pong
+              type: object
+              properties:
+                ping:
+                  type: string
+                  example: "pong"

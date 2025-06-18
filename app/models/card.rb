@@ -7,7 +7,10 @@ class Card < ApplicationRecord
   belongs_to :user
   belongs_to :product
 
-  enum state: { issued: 0, approved: 1, cancelled: 2 }
+  validates :activation_code, uniqueness: true, allow_blank: true
+  validates :user_id, uniqueness: { scope: :product_id }
+
+  enum :state, %i[issued approved rejected]
 
   before_save :generate_activation_code, if: :should_generate_activation_code?
 

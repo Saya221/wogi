@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Admin::ReportsService < Api::V1::BaseService
-  def initialize(client, brand)
+  def initialize(client:, brand:)
     @client = client
     @brand = brand
   end
