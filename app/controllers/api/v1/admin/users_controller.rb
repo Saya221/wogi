@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Admin::UsersController < Api::V1::Admin::BaseController
+  include Api::V1::PermitParams
+
   def index
     pagy_info, records = paginate users
 
@@ -22,12 +24,10 @@ class Api::V1::Admin::UsersController < Api::V1::Admin::BaseController
   private
 
   def users
-    @users ||= User.filter_by(params.dig(:filter, :field) => params.dig(:filter, :value))
-                   .conditions_sort(params.dig(:sort, :field) => params.dig(:sort, :value))
+    @users ||= User.filter_by(params[:filter].to_h).conditions_sort(params[:sort].to_h)
   end
 
   def user_params
     params.require(:user).permit(:email, :password, :name, :payout_rate)
-          .merge(filter: {}, sort: {})
   end
 end

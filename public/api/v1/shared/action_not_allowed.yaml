@@ -1,0 +1,13 @@
+error_object:
+  description: Action not allowed
+  content:
+    application/json:
+      schema:
+        $ref: "common.yaml#/errors_object"
+      examples:
+        when user is not allowed to perform the action:
+          value:
+            success: false
+            errors:
+              - code: 1202
+                message: You are not allowed to perform this action.

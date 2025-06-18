@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Client::ReportsService < Api::V1::BaseService
-  def initialize(client)
+  def initialize(client:)
     @client = client
   end
 
@@ -12,7 +12,7 @@ class Api::V1::Client::ReportsService < Api::V1::BaseService
       total_cards: client_cards.count,
       total_issued_cards: client_cards.issued.count,
       total_approved_cards: client_cards.approved.count,
-      total_cancelled_cards: client_cards.cancelled.count
+      total_rejected_cards: client_cards.rejected.count
     }
   end
 

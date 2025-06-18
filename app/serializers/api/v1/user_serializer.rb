@@ -5,6 +5,12 @@ class Api::V1::UserSerializer < Api::V1::BaseSerializer
     super.slice(*fields_custom[:users])
   end
 
+  def payout_rate
+    return unless fields_custom[:users].include?(:payout_rate)
+
+    object.payout_rate.to_f
+  end
+
   def created_at
     object.created_at.to_i
   end

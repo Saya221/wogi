@@ -19,7 +19,7 @@ module ApiRoutes
             resources :cards, only: %i[index] do
               member do
                 patch :approved
-                patch :cancelled
+                patch :rejected
               end
             end
             resources :reports, only: %i[index]
@@ -29,7 +29,8 @@ module ApiRoutes
           namespace :client do
             resources :cards, only: %i[index show create update destroy] do
               member do
-                patch :cancelled
+                patch :rejected
+                patch :activate_accessible_product
               end
             end
             resources :products, only: %i[index]

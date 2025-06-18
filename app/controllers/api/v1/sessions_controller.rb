@@ -19,7 +19,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
   def logout
     current_session.destroy!
 
-    render_json data: {}, meta: {}
+    render_json({}, meta: {})
   end
 
   private

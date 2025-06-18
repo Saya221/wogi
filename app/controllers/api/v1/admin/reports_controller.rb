@@ -9,6 +9,10 @@ class Api::V1::Admin::ReportsController < Api::V1::Admin::BaseController
 
   private
 
+  def permit_params
+    params.permit(:brand_id, :client_id)
+  end
+
   def check_parameters
     return if params[:brand_id] && params[:client_id]
 

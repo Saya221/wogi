@@ -4,6 +4,8 @@ class CreateAccessibleProducts < ActiveRecord::Migration[7.2]
       t.references :product, type: :uuid
       t.references :user, type: :uuid
 
+      t.integer :state, default: AccessibleProduct.states[:inactive], null: false, index: true
+
       t.datetime :deleted_at
       t.timestamps
     end

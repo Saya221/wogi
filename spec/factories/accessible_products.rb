@@ -4,5 +4,6 @@ FactoryBot.define do
   factory :accessible_product do
     user
     product
+    state { "inactive" }
   end
 end

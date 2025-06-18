@@ -2,17 +2,16 @@
 
 require "rails_helper"
 
-RSpec.describe UserSession, type: :model do
+RSpec.describe AccessibleProduct, type: :model do
   it_behaves_like :concerns
 
   describe "relationships" do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:product) }
   end
 
-  describe "methods" do
-    context "#gen_uniq_session_token" do
-      # TODO: Find the way to test regression methods
-    end
+  describe "validations" do
+    it { is_expected.to validate_uniqueness_of(:product_id).scoped_to(:user_id).ignoring_case_sensitivity }
   end
 
   describe "instance methods" do
