@@ -7,14 +7,14 @@ RSpec.describe Api::V1::ProductSerializer do
   let(:brand) { create(:brand, id: "7926197c-7133-461c-aeab-d18ba6c6044e", name: "BrandName") }
   let(:product) do
     create :product,
-      id: "7926197c-7133-461c-aeab-d18ba6c6044d",
-      name: "Product Name",
-      brand: brand,
-      description: "A product description",
-      price: 123.45,
-      state: "active",
-      created_at: Time.zone.parse("2024-01-01 12:00:00"),
-      updated_at: Time.zone.parse("2024-01-01 12:00:00")
+           id: "7926197c-7133-461c-aeab-d18ba6c6044d",
+           name: "Product Name",
+           brand:,
+           description: "A product description",
+           price: 123.45,
+           state: "active",
+           created_at: Time.zone.parse("2024-01-01 12:00:00"),
+           updated_at: Time.zone.parse("2024-01-01 12:00:00")
   end
 
   describe "serialize type is root" do

@@ -5,3 +5,14 @@ en:
         invalid_token:
           code: 1500
           message: Invalid Token
+      client:
+        activate_accessible_product:
+          invalid_card_state:
+            code: 1501
+            message: Card is not approved.
+          invalid_activation_code:
+            code: 1502
+            message: Invalid activation code.
+          invalid_pin_code:
+            code: 1503
+            message: Invalid pin code.

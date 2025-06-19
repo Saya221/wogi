@@ -118,11 +118,11 @@ RSpec.describe Api::V1::Admin::BrandsController, type: :controller do
     let(:admin) { create(:admin) }
     let(:brand_params) do
       {
-        name: name,
-        description: description,
-        country: country,
-        state: state,
-        website_url: website_url
+        name:,
+        description:,
+        country:,
+        state:,
+        website_url:
       }
     end
 
@@ -193,11 +193,11 @@ RSpec.describe Api::V1::Admin::BrandsController, type: :controller do
     let(:brand) { create(:brand) }
     let(:brand_params) do
       {
-        name: name,
-        description: description,
-        country: country,
-        state: state,
-        website_url: website_url
+        name:,
+        description:,
+        country:,
+        state:,
+        website_url:
       }
     end
 

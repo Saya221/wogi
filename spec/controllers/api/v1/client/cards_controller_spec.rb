@@ -50,7 +50,7 @@ RSpec.describe Api::V1::Client::CardsController, type: :controller do
 
         it "returns cards sorted by state in descending order" do
           expect(response).to have_http_status(:ok)
-          expect(response_data[:data][:cards].map { |b| b[:state] }).to eq(["approved", "issued"])
+          expect(response_data[:data][:cards].map { |b| b[:state] }).to eq(%w[approved issued])
         end
       end
     end
@@ -343,11 +343,11 @@ RSpec.describe Api::V1::Client::CardsController, type: :controller do
     let(:product) { create(:product) }
     let(:card) do
       create :card,
-        user: client,
-        product: product,
-        state: "approved",
-        pin_code: pin_code,
-        activation_code: "valid_activation_code"
+             user: client,
+             product:,
+             state: "approved",
+             pin_code:,
+             activation_code: "valid_activation_code"
     end
 
     describe "when client is logged in" do
@@ -362,17 +362,17 @@ RSpec.describe Api::V1::Client::CardsController, type: :controller do
             patch :activate_accessible_product, params: {
               id: card.id,
               activation_code: "valid_activation_code",
-              pin_code: pin_code
+              pin_code:
             }
           end
 
           it "calls the service exactly once with correct params" do
             expect(Api::V1::Client::ActivateAccessibleProductService).to have_received(:new).with(
               user: client,
-              product: product,
-              card: card,
+              product:,
+              card:,
               activation_code: "valid_activation_code",
-              pin_code: pin_code
+              pin_code:
             ).once
           end
         end
@@ -391,10 +391,10 @@ RSpec.describe Api::V1::Client::CardsController, type: :controller do
           it "calls the service exactly once with correct params" do
             expect(Api::V1::Client::ActivateAccessibleProductService).to have_received(:new).with(
               user: client,
-              product: product,
-              card: card,
+              product:,
+              card:,
               activation_code: "valid_activation_code",
-              pin_code: pin_code
+              pin_code:
             ).once
           end
         end
@@ -407,7 +407,7 @@ RSpec.describe Api::V1::Client::CardsController, type: :controller do
           allow(Api::V1::Client::ActivateAccessibleProductService).to receive(:new).and_return(double(call: {}))
           patch :activate_accessible_product, params: {
             id: card.id,
-            activation_code: "invalid_activation_code",
+            activation_code: "invalid_activation_code"
           }
         end
 
@@ -421,7 +421,7 @@ RSpec.describe Api::V1::Client::CardsController, type: :controller do
           allow(Api::V1::Client::ActivateAccessibleProductService).to receive(:new).and_return(double(call: {}))
           patch :activate_accessible_product, params: {
             id: card.id,
-            pin_code: pin_code
+            pin_code:
           }
         end
 

@@ -48,9 +48,9 @@ class Api::V1::Client::CardsController < Api::V1::Client::BaseController
     render_json Api::V1::Client::ActivateAccessibleProductService.new(
       user: current_user,
       product: card.product,
-      card: card,
+      card:,
       activation_code: params[:activation_code],
-      pin_code: params[:pin_code],
+      pin_code: params[:pin_code]
     ).call
   end
 

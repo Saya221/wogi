@@ -11,7 +11,7 @@ class Api::V1::Admin::ReportsService < Api::V1::BaseService
       client: {
         total_products: client.products.count,
         total_brands: client.brands.count,
-        total_spends: client_products.sum(:price),
+        total_spends: client_products.sum(:price)
       },
       brand: {
         total_products: brand_products.count,

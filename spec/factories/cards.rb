@@ -6,6 +6,6 @@ FactoryBot.define do
     product
     state { :issued }
     activation_code { SecureRandom.hex(Settings.limit.activation_code).upcase }
-    pin_code { "1234"}
+    pin_code { "1234" }
   end
 end

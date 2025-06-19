@@ -19,7 +19,8 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :controller do
         end
 
         it "calls the ReportsService with the correct parameters" do
-          expect(Api::V1::Admin::ReportsService).to have_received(:new).with(brand: brand, client: client).once
+          expect(Api::V1::Admin::ReportsService).to have_received(:new).with(brand:,
+                                                                             client:).once
         end
       end
 

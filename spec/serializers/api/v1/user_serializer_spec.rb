@@ -6,12 +6,12 @@ RSpec.describe Api::V1::UserSerializer do
   let(:current_time) { Time.zone.parse("2024-01-01 12:00:00").to_i }
   let(:user) do
     create :user,
-      id: "123e4567-e89b-12d3-a456-426614174000",
-      name: "Test User",
-      email: "test@example.com",
-      state: "active",
-      created_at: Time.zone.parse("2024-01-01 12:00:00"),
-      updated_at: Time.zone.parse("2024-01-01 12:00:00")
+           id: "123e4567-e89b-12d3-a456-426614174000",
+           name: "Test User",
+           email: "test@example.com",
+           state: "active",
+           created_at: Time.zone.parse("2024-01-01 12:00:00"),
+           updated_at: Time.zone.parse("2024-01-01 12:00:00")
   end
 
   describe "serialize type is root" do

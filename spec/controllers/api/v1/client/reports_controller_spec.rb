@@ -16,7 +16,7 @@ RSpec.describe Api::V1::Client::ReportsController, type: :controller do
         end
 
         it "calls the ReportsService with the correct parameters" do
-          expect(Api::V1::Client::ReportsService).to have_received(:new).with(client: client).once
+          expect(Api::V1::Client::ReportsService).to have_received(:new).with(client:).once
         end
       end
     end

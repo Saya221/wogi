@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Admin::ProductsController, type: :controller do
   describe "GET #index" do
     let(:admin) { create(:admin) }
     let(:brand) { create(:brand) }
-    let(:products) { create_list(:product, 3, brand: brand) }
+    let(:products) { create_list(:product, 3, brand:) }
 
     describe "when admin is logged in" do
       context "when fetching all products" do
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::Admin::ProductsController, type: :controller do
       end
 
       context "when filter by name is applied" do
-        let!(:filtered_product) { create(:product, name: "Filtered Product", brand: brand) }
+        let!(:filtered_product) { create(:product, name: "Filtered Product", brand:) }
 
         before do
           products
@@ -40,8 +40,8 @@ RSpec.describe Api::V1::Admin::ProductsController, type: :controller do
       end
 
       context "when sorting by name in descending order" do
-        let!(:product_a) { create(:product, name: "Product A", brand: brand) }
-        let!(:product_b) { create(:product, name: "Product B", brand: brand) }
+        let!(:product_a) { create(:product, name: "Product A", brand:) }
+        let!(:product_b) { create(:product, name: "Product B", brand:) }
 
         before do
           login(user: admin)
@@ -76,7 +76,7 @@ RSpec.describe Api::V1::Admin::ProductsController, type: :controller do
   describe "GET #show" do
     let(:admin) { create(:admin) }
     let(:brand) { create(:brand) }
-    let(:product) { create(:product, brand: brand) }
+    let(:product) { create(:product, brand:) }
 
     describe "when admin is logged in" do
       before { login(user: admin) }
@@ -127,17 +127,17 @@ RSpec.describe Api::V1::Admin::ProductsController, type: :controller do
     let(:brand) { create(:brand) }
     let(:product_params) do
       {
-        name: name,
-        description: description,
-        price: price,
-        state: state,
+        name:,
+        description:,
+        price:,
+        state:
       }
     end
 
     context "when admin is logged in" do
       before do
         login(user: admin)
-        post :create, params: { product: product_params, brand_id: brand_id }
+        post :create, params: { product: product_params, brand_id: }
       end
 
       context "with valid parameters" do
@@ -195,7 +195,7 @@ RSpec.describe Api::V1::Admin::ProductsController, type: :controller do
       let(:brand_id) { brand.id }
 
       it_behaves_like :unauthorized do
-        before { post :create, params: { product: product_params, brand_id: brand_id } }
+        before { post :create, params: { product: product_params, brand_id: } }
       end
     end
 
@@ -210,7 +210,7 @@ RSpec.describe Api::V1::Admin::ProductsController, type: :controller do
       it_behaves_like :forbidden do
         before do
           login(user: client)
-          post :create, params: { product: product_params, brand_id: brand_id }
+          post :create, params: { product: product_params, brand_id: }
         end
       end
     end
@@ -219,20 +219,20 @@ RSpec.describe Api::V1::Admin::ProductsController, type: :controller do
   describe "PUT #update" do
     let(:admin) { create(:admin) }
     let(:brand) { create(:brand) }
-    let(:product) { create(:product, brand: brand) }
+    let(:product) { create(:product, brand:) }
     let(:product_params) do
       {
-        name: name,
-        description: description,
-        price: price,
-        state: state
+        name:,
+        description:,
+        price:,
+        state:
       }
     end
 
     context "when admin is logged in" do
       before do
         login(user: admin)
-        put :update, params: { id: product_id, product: product_params, brand_id: brand_id }
+        put :update, params: { id: product_id, product: product_params, brand_id: }
       end
 
       context "with valid parameters" do
@@ -305,7 +305,7 @@ RSpec.describe Api::V1::Admin::ProductsController, type: :controller do
       let(:brand_id) { brand.id }
 
       it_behaves_like :unauthorized do
-        before { put :update, params: { id: product.id, product: product_params, brand_id: brand_id } }
+        before { put :update, params: { id: product.id, product: product_params, brand_id: } }
       end
     end
 
@@ -320,7 +320,7 @@ RSpec.describe Api::V1::Admin::ProductsController, type: :controller do
       it_behaves_like :forbidden do
         before do
           login(user: client)
-          put :update, params: { id: product.id, product: product_params, brand_id: brand_id }
+          put :update, params: { id: product.id, product: product_params, brand_id: }
         end
       end
     end
@@ -329,7 +329,7 @@ RSpec.describe Api::V1::Admin::ProductsController, type: :controller do
   describe "DELETE #destroy" do
     let(:admin) { create(:admin) }
     let(:brand) { create(:brand) }
-    let(:product) { create(:product, brand: brand) }
+    let(:product) { create(:product, brand:) }
 
     context "when admin is logged in" do
       before { login(user: admin) }

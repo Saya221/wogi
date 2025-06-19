@@ -118,10 +118,10 @@ RSpec.describe Api::V1::Admin::UsersController, type: :controller do
     let(:admin) { create(:admin) }
     let(:user_params) do
       {
-        name: name,
-        email: email,
-        password: password,
-        payout_rate: payout_rate
+        name:,
+        email:,
+        password:,
+        payout_rate:
       }
     end
 
@@ -165,7 +165,7 @@ RSpec.describe Api::V1::Admin::UsersController, type: :controller do
         let(:email) { "user@example.com" }
         let(:password) { "Password123!" }
         let(:payout_rate) { 0.85 }
-        let!(:existing_user) { create(:client, email: email) }
+        let!(:existing_user) { create(:client, email:) }
 
         before do
           login(user: admin)

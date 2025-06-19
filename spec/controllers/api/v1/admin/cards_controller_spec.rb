@@ -50,7 +50,7 @@ RSpec.describe Api::V1::Admin::CardsController, type: :controller do
 
         it "returns cards sorted by state in descending order" do
           expect(response).to have_http_status(:ok)
-          expect(response_data[:data][:cards].map { |b| b[:state] }).to eq(["approved", "issued"])
+          expect(response_data[:data][:cards].map { |b| b[:state] }).to eq(%w[approved issued])
         end
       end
     end
@@ -80,7 +80,7 @@ RSpec.describe Api::V1::Admin::CardsController, type: :controller do
     describe "when admin is logged in" do
       before do
         login(user: admin)
-        patch :approved, params: { id: card.id }
+        patch :approved, params: { id: card.id, card: { pin_code: "1234" } }
       end
 
       context "when the card is successfully approved" do
@@ -123,7 +123,7 @@ RSpec.describe Api::V1::Admin::CardsController, type: :controller do
 
       before do
         login(user: admin)
-        patch :approved, params: { id: card.id }
+        patch :approved, params: { id: card.id, card: { pin_code: "1234" } }
       end
 
       it_behaves_like :taken, "accessible_product", "product_id"

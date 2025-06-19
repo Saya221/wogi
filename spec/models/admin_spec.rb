@@ -14,7 +14,9 @@ RSpec.describe Admin, type: :model do
       end
 
       it "raises NoMethodError for payout_rate setter" do
-        expect { admin.payout_rate = 1.0 }.to raise_error(NoMethodError, /payout_rate= is not implemented for Admin/)
+        expect do
+          admin.payout_rate = 1.0
+        end.to raise_error(NoMethodError, /payout_rate= is not implemented for Admin/)
       end
     end
   end
