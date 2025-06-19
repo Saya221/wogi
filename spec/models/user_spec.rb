@@ -3,8 +3,17 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
+  it_behaves_like :concerns
+
   describe "relationships" do
     it { is_expected.to have_many(:user_sessions).dependent(:destroy) }
+    it { is_expected.to have_many(:accessible_products).dependent(:destroy) }
+    it { is_expected.to have_many(:products).through(:accessible_products) }
+    it { is_expected.to have_many(:brands).through(:products) }
+  end
+
+  describe "enums" do
+    it { is_expected.to define_enum_for(:state).with_values(inactive: 0, active: 1) }
   end
 
   describe "validations" do
@@ -71,7 +80,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "class methods" do
+  describe "instance methods" do
     it_behaves_like :filter_and_sort
   end
 end

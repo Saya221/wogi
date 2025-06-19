@@ -8,10 +8,6 @@ module MethodsHelper
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def convert_serialize(data)
-    data.deep_symbolize_keys
-  end
-
   def login(user: nil)
     current_user = user || create(:user)
     current_session = create :user_session, user: current_user

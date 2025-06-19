@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Admin::ProductsController < Api::V1::Admin::BaseController
+  include Api::V1::PermitParams
+
   def index
     pagy_info, records = paginate products
 
@@ -28,7 +30,7 @@ class Api::V1::Admin::ProductsController < Api::V1::Admin::BaseController
   def destroy
     product.destroy!
 
-    render_json data: {}, meta: {}
+    render_json({}, meta: {})
   end
 
   private
@@ -38,9 +40,7 @@ class Api::V1::Admin::ProductsController < Api::V1::Admin::BaseController
   end
 
   def products
-    @products ||= brand.products
-                       .filter_by(params.dig(:filter, :field) => params.dig(:filter, :value))
-                       .conditions_sort(params.dig(:sort, :field) => params.dig(:sort, :value))
+    @products ||= brand.products.filter_by(params[:filter].to_h).conditions_sort(params[:sort].to_h)
   end
 
   def product
@@ -48,7 +48,6 @@ class Api::V1::Admin::ProductsController < Api::V1::Admin::BaseController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :brand_id, :state)
-          .merge(filter: {}, sort: {})
+    params.require(:product).permit(:name, :description, :price, :state)
   end
 end

@@ -19,6 +19,6 @@ payout_rate:
 product:
   price:
     min: 0.1
-currency_precision: 2
 limit:
   activation_code: 6
+  pin_code: 4

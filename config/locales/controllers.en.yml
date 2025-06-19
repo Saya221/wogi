@@ -5,9 +5,12 @@ en:
         cards:
           invalid_card_state:
             code: 1900
-            message: Card already completed or cancelled
+            message: Card already approved or rejected
+          invalid_approved_card:
+            code: 1901
+            message: Card is not approved yet
       admin:
         cards:
           invalid_card_state:
             code: 1900
-            message: Card already completed or cancelled
+            message: Card already approved or rejected
